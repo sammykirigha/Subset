@@ -68,7 +68,7 @@ function intersect(arr1, arr2) {
         hashTable[arr1[i]] = true;
     }
     for (let j = 0; j < arr2.length; j++){
-        if (hashTable[arr2[j]]) {
+        if (!!hashTable[arr2[j]]) {
             result.push(arr2[j])
         }
     }
@@ -104,5 +104,41 @@ function duplicateHash(array) {
     return false
 }
 
-console.log(duplicateHash(["a", "b", "c", "d", "c","e"]))
+console.log(duplicateHash(["a", "b", "c", "d", "c", "e"]))
+
+//find a missing alphabet letter in a string
+
+let findLetter = str => {
+    let hashTable = {};
+    for (let i = 0; i < str.length; i++){
+        hashTable[str[i]] = true;
+    }
+    let alphabet = "abcdefghijklmnopqrstuvwxyz";
+    for (let i = 0; i < alphabet.length; i++){
+        if (!hashTable[alphabet[i]]) {
+            return alphabet[i]
+        }
+    }
+}
+
+console.log(findLetter("the quick brown box jumps over a lazy dog"))
+
+let duplicateMin = str => {
+    let result = []
+    let hashTable = {};
+    for (let i = 0; i < str.length; i++){
+        if (hashTable[str[i]]) {
+            hashTable[str[i]]++;
+        } else {
+            hashTable[str[i]] = 1;
+        }
+    }
+    for (let j = 0; j < str.length; j++){
+        if (hashTable[str[j]] == 1) {
+            return str[j];
+        }
+    }
+}
+
+console.log(duplicateMin("minimum"))
 
